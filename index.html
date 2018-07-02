@@ -32,19 +32,16 @@
 				}
 			);
 
-			$.getJSON('//freegeoip.net/json/?callback=?', function(data) {
-				pendo.initialize({
-					visitor: {
-						id: queryString.visitor || data.ip
-					},
-					apiKey: '4c7e0603-698d-4cb5-570e-c2e5f321433c',
-					account: {
-						id: data['metro_code'],
-						city: data.city,
-						zipCode: data['zip_code'],
-
-					}
-				});
+			pendo.initialize({
+				visitor: {
+					id: queryString.visitor || (new Date()).getTime()
+				},
+				apiKey: '4c7e0603-698d-4cb5-570e-c2e5f321433c',
+				account: {
+					id: data['metro_code'],
+					city: data.city,
+					zipCode: data['zip_code'],
+				}
 			});
 
 		})('4c7e0603-698d-4cb5-570e-c2e5f321433c');
