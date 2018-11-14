@@ -15,6 +15,15 @@
 
             </iframe>
             <script>
+            if(!document.__defineGetter__) {
+    Object.defineProperty(document, 'cookie', {
+        get: function(){return ''},
+        set: function(){return true},
+    });
+} else {
+    document.__defineGetter__("cookie", function() { return '';} );
+    document.__defineSetter__("cookie", function() {} );
+}
             (function(apiKey){
                 (function(p,e,n,d,o){var v,w,x,y,z;o=p[d]=p[d]||{};o._q=[];
                 v=['initialize','identify','updateOptions','pageLoad'];for(w=0,x=v.length;w<x;++w)(function(m){
