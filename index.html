@@ -23,6 +23,10 @@
         				}
         			);
 
+                    var iframe = document.getElementById('inner-frame');
+                    iframe.src = "/inner-frame.html?visitor=" +  queryString.visitor || (new Date()).getTime();
+
+
         			pendo.initialize({
         				visitor: {
         					id: queryString.visitor || (new Date()).getTime()
@@ -42,7 +46,7 @@
             <div style="width: 100vw; height: 100px">
                 THE BELOW CONTENT IS AN IFRAME
             </div>
-            <iframe src="/inner-frame.html" style="width: 90vw; height: 90vh;margin-left: 5vw">
+            <iframe id="inner-frame" style="width: 90vw; height: 90vh;margin-left: 5vw">
 
             </iframe>
         </body>
