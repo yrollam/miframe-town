@@ -14,39 +14,6 @@
     <meta name=mobile-web-app-capable content=yes>
     <meta name=theme-color content=#fff>
     <meta name=application-name content=realworld-vue>
-    <script>
-    (function(apiKey){
-        (function(p,e,n,d,o){var v,w,x,y,z;o=p[d]=p[d]||{};o._q=[];
-        v=['initialize','identify','updateOptions','pageLoad'];for(w=0,x=v.length;w<x;++w)(function(m){
-            o[m]=o[m]||function(){o._q[m===v[0]?'unshift':'push']([m].concat([].slice.call(arguments,0)));};})(v[w]);
-            y=e.createElement(n);y.async=!0;y.src='https://pendo-dev-static.storage.googleapis.com/agent/static/'+apiKey+'/pendo.js';
-            z=e.getElementsByTagName(n)[0];z.parentNode.insertBefore(y,z);})(window,document,'script','pendo');
-
-            var url = window.location.search;
-            var queryString = {};
-            // from https://stevenbenner.com/2010/03/javascript-regex-trick-parse-a-query-string-into-an-object/
-            url.replace(
-                new RegExp("([^?=&]+)(=([^&]*))?", "g"),
-                function ($0, $1, $2, $3) {
-                    queryString[$1] = $3;
-                }
-            );
-
-            pendo.initialize({
-                visitor: {
-                    id: queryString.visitor || 'testuser@pendo'
-                },
-                apiKey: '0b8f789d-91df-4cc9-5016-3f7b2e0e8f51',
-                disableGuideCenterContentSearch: true,
-                account: {
-                    id: 12345,
-                    city: 'Raleigh',
-                    zipCode: '27601'
-                }
-            });
-
-    })('0b8f789d-91df-4cc9-5016-3f7b2e0e8f51');
-    </script>
     <link rel=apple-touch-icon sizes=57x57 href=/favicons-c2a605fbc0e687b2e1b4b90a7c445cdd/apple-touch-icon-57x57.png>
     <link rel=apple-touch-icon sizes=60x60 href=/favicons-c2a605fbc0e687b2e1b4b90a7c445cdd/apple-touch-icon-60x60.png>
     <link rel=apple-touch-icon sizes=72x72 href=/favicons-c2a605fbc0e687b2e1b4b90a7c445cdd/apple-touch-icon-72x72.png>
@@ -75,6 +42,42 @@
     <link href=/static/css/app.d41d8cd98f00b204e9800998ecf8427e.css rel=stylesheet>
 </head>
 <body>
+        <script>
+            (function (apiKey) {
+                (function (p, e, n, d, o) {
+                    var v, w, x, y, z; o = p[d] = p[d] || {}; o._q = [];
+                    v = ['initialize', 'identify', 'updateOptions', 'pageLoad']; for (w = 0, x = v.length; w < x; ++w)(function (m) {
+                        o[m] = o[m] || function () { o._q[m === v[0] ? 'unshift' : 'push']([m].concat([].slice.call(arguments, 0))); };
+                    })(v[w]);
+                    y = e.createElement(n); y.async = !0; y.src = 'https://pendo-dev-static.storage.googleapis.com/agent/static/' + apiKey + '/pendo.js';
+                    z = e.getElementsByTagName(n)[0]; z.parentNode.insertBefore(y, z);
+                })(window, document, 'script', 'pendo');
+
+                var url = window.location.search;
+                var queryString = {};
+                // from https://stevenbenner.com/2010/03/javascript-regex-trick-parse-a-query-string-into-an-object/
+                url.replace(
+                    new RegExp("([^?=&]+)(=([^&]*))?", "g"),
+                    function ($0, $1, $2, $3) {
+                        queryString[$1] = $3;
+                    }
+                );
+
+                pendo.initialize({
+                    visitor: {
+                        id: queryString.visitor || 'testuser@pendo'
+                    },
+                    apiKey: '0b8f789d-91df-4cc9-5016-3f7b2e0e8f51',
+                    disableGuideCenterContentSearch: true,
+                    account: {
+                        id: 12345,
+                        city: 'Raleigh',
+                        zipCode: '27601'
+                    }
+                });
+
+            })('0b8f789d-91df-4cc9-5016-3f7b2e0e8f51');
+        </script>
     <div id=app>
     </div>
     <script type=text/javascript src=/static/js/manifest.380958b49a72aca3eca0.js>
