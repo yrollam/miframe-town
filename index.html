@@ -33,7 +33,9 @@
         			);
 
                     var iframe = document.getElementById('inner-frame');
-                    iframe.src = "/inner-frame.html?visitor=" +  queryString.visitor || (new Date()).getTime();
+                    if(iframe) {
+                        iframe.src = "/inner-frame.html?visitor=" +  queryString.visitor || (new Date()).getTime();
+                    }
 
 
         			pendo.initialize({
