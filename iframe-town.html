@@ -44,7 +44,9 @@
 
                         iframes.forEach(iframe => {
                             const readyState = iframe.contentWindow.document.readyState;
-                            if(readyState === 'loading') {
+                            const iframeHref = iframe.contentWindow.location.href;
+
+                            if(readyState === 'loading' || iframeHref === 'about:blank') {
                                 iframe.addEventListener('load', () => {
                                     initializeSnippetOnTargetWindow(iframe.contentWindow);
                                     recursivelyAddSnippetToIframes(iframe.contentWindow);
@@ -70,7 +72,7 @@
                                     o[m] = o[m] || function () { o._q[m === v[0] ? 'unshift' : 'push']([m].concat([].slice.call(arguments, 0))); };
                                 })(v[w]);
                                 y = e.createElement(n); y.async = !0; y.src = 'https://pendo-dev-static.storage.googleapis.com/agent/static/' + apiKey + '/pendo.js';
-                                z = e.getElementsByTagName(n)[0]; console.log("?", z);z.parentNode.insertBefore(y, z);
+                                z = e.getElementsByTagName(n)[0]; z.parentNode.insertBefore(y, z);
                             })(window, document, 'script', 'pendo');
 
                             var url = window.location.search;
