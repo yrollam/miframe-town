@@ -17,12 +17,21 @@
                 display: flex;
             }
         </style>
+        <script>
+            function addIframe() {
+                const iframe = document.createElement('iframe');
+                iframe.src = '/iframe-town-inner-2.html';
+                document.querySelector('.frame-container').appendChild(iframe);
+            }
+        </script>
     </head>
     <body>
         <div class="container">
             <div class="text">Inner iframe</div>
-            <button>Add another iframe in...this iframe</button>
+            <button onclick="addIframe()">Add another iframe in...this iframe</button>
         </div>
-        <iframe src="/iframe-town-inner-2.html"></iframe>
+        <div class="frame-container">
+            <iframe src="/iframe-town-inner-2.html"></iframe>
+        </div>
     </body>
 </html>
