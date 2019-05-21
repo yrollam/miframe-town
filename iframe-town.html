@@ -38,7 +38,7 @@
         </div>
                 <script id="pendo-snippet">
                     function recursivelyAddSnippetToIframes(targetWindow) {
-                        const iframes = targetWindow.document.querySelector('iframe');
+                        const iframes = targetWindow.document.querySelectorAll('iframe');
 
                         iframes.forEach(iframe => {
                             iframe.addEventListener('load', () => {
