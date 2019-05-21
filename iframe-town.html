@@ -43,10 +43,16 @@
                         const iframes = targetWindow.document.querySelectorAll('iframe');
 
                         iframes.forEach(iframe => {
-                            iframe.addEventListener('load', () => {
+                            const readyState = iframe.contentWindow.document.readyState;
+                            if(readyState === 'loading') {
+                                iframe.addEventListener('load', () => {
+                                    initializeSnippetOnTargetWindow(iframe.contentWindow);
+                                    recursivelyAddSnippetToIframes(iframe.contentWindow);
+                                });
+                            } else {
                                 initializeSnippetOnTargetWindow(iframe.contentWindow);
                                 recursivelyAddSnippetToIframes(iframe.contentWindow);
-                            });
+                            }
                         });
                     }
 
