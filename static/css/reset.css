@@ -1,0 +1,199 @@
+/*
+//  ######                             
+//  #     # ######  ####  ###### ##### 
+//  #     # #      #      #        #   
+//  ######  #####   ####  #####    #   
+//  #   #   #           # #        #   
+//  #    #  #      #    # #        #   
+//  #     # ######  ####  ######   #  
+*/
+
+/*  CLEARING THE BOOKS  */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+	}
+
+body {
+	line-height: 1;
+	color: black;
+	background: white;
+	}
+
+ol, ul {
+	list-style: none;
+	}
+
+table {
+	border-collapse: separate;
+	border-spacing: 0;
+	}
+
+caption, th, td {
+	text-align: left;
+	font-weight: normal;
+	}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: "";
+	}
+
+blockquote, q {
+	quotes: "" "";
+	}
+
+/*  REWRITING THE LAW  */
+
+html, body {
+	height: 100%;
+	}
+
+body {
+	margin: 0 auto;
+	color: #222;
+	font: small "Helvetica", "Arial", sans-serif;
+	}
+
+/*  text  */
+
+h1, h2, h3 { color: #313633; padding: 8px 0; font-weight: bold; font-family: "Helvetica", "Arial", sans-serif; }
+
+h1 { font-size: 180%; }
+h2 { font-size: 140%; }
+h3 { font-size: 125%; }
+h4 { font-size: 110%; }
+h5 { font-size: 100%; }
+
+big { font-size: 115%; }
+small { font-size: 85%; }
+strong { font-weight: bold; }
+em { font-style: italic; }
+
+/*  links  */
+
+span.link,
+a 
+{
+	color: #01903a;
+    cursor: pointer;
+}
+
+span.link:hover,
+span.link:focus,	
+a:hover,
+a:focus {
+	color: #18c65e;
+}
+
+span.link.disabled {
+	cursor: not-allowed;
+    color: #aaa;
+}
+
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+    color: #aaa;
+}
+
+/*  block-level  */
+
+p, ul, ol {
+	padding: 8px 0;
+	}
+
+table, form {
+	margin: 8px 0;
+	}
+
+hr {
+	height: 2px;
+	margin: 8px 0;
+	background: #999;
+	color: #999;
+	border: 0;
+	}
+
+/*  lists  */
+
+ul {
+	list-style: disc outside;
+	margin-left: 20px;
+	}
+	
+	ul ul {
+		list-style: circle outside;
+		margin: 0 0 0 20px;
+		}	
+
+ol {
+	list-style: decimal outside;
+	margin-left: 20px;	
+	}
+	
+	ol ol {
+		list-style: lower-roman outside;
+		margin: 0 0 0 20px;
+		}
+				
+/*  tables  */
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+	}
+	
+	th {
+		padding: 3px 8px 4px;
+		}
+	
+	td {
+		padding: 5px 8px;
+		}
+
+/*  forms  */
+
+form {
+	width: auto;
+	font-size: 100%;
+}
+	
+form label {
+	float: left;
+	padding: 4px 5px 0 0;
+	vertical-align: top;
+	width: 150px;
+	font-size: 85%;
+	text-align: right;
+}	
+			
+form select {
+	margin-top: 2px;
+}	
+
+form textarea {
+	width: 250px;
+	padding: 2px;
+	height: 150px;
+	font-size: 90%;
+	line-height: 1.2em;
+	font-family: "Helvetica", "Arial", sans-serif;
+	vertical-align: top;
+}
