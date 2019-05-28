@@ -16,6 +16,7 @@
             font-size: 20px;
             font-weight: bold;
             margin-top: 10px;
+            margin-bottom: 20px;
         }
 
         .iframe-container {
@@ -37,26 +38,40 @@
             <iframe src="/iframe-town-inner-1.html"></iframe>
         </div>
                 <script id="pendo-snippet">
-                    function recursivelyAddSnippetToIframes(targetWindow) {
-                        initializeSnippetOnTargetWindow(targetWindow);
+                    function addSnippetToFrame(iframe) {
+                        var readyState = iframe.contentWindow.document.readyState;
+                        var iframeHref = iframe.contentWindow.location.href;
 
-                        const iframes = targetWindow.document.querySelectorAll('iframe');
-
-                        iframes.forEach(iframe => {
-                            const readyState = iframe.contentWindow.document.readyState;
-                            const iframeHref = iframe.contentWindow.location.href;
-
-                            if(readyState === 'loading' || iframeHref === 'about:blank') {
-                                iframe.addEventListener('load', () => {
-                                    initializeSnippetOnTargetWindow(iframe.contentWindow);
-                                    recursivelyAddSnippetToIframes(iframe.contentWindow);
-                                });
-                            } else {
+                        if(readyState === 'loading' || iframeHref === 'about:blank') {
+                            iframe.addEventListener('load', () => {
                                 initializeSnippetOnTargetWindow(iframe.contentWindow);
-                                recursivelyAddSnippetToIframes(iframe.contentWindow);
-                            }
-                        });
+                                addIframeWatcherToTargetWindow(iframe.contentWindow);
+
+                            });
+                        } else {
+                            initializeSnippetOnTargetWindow(iframe.contentWindow);
+                            addIframeWatcherToTargetWindow(iframe.contentWindow);
+                        }
+
+                        iframe.setAttribute('pendo-installed', true);
                     }
+
+                    function addIframeWatcherToTargetWindow(targetWindow) {
+                        var int = targetWindow.setInterval(function () {
+                            var iframes = targetWindow.document.querySelectorAll('iframe');
+
+                            iframes.forEach(iframe => {
+                                var hasPendo = iframe.getAttribute('pendo-installed');
+
+                                if(!hasPendo) {
+                                    addSnippetToFrame(iframe);
+                                }
+                            });
+                        }, 500);
+                    }
+
+                    initializeSnippetOnTargetWindow(window);
+                    addIframeWatcherToTargetWindow(window);
 
                     function initializeSnippetOnTargetWindow(window) {
                         const document = window.document;
@@ -84,7 +99,7 @@
                                     queryString[$1] = $3;
                                 }
                             );
-                            pendo.initialize({
+                            window.pendo.initialize({
                                 visitor: {
                                     id: queryString.visitor || 'testuser@pendo'
                                 },
@@ -100,7 +115,6 @@
                         })('0b8f789d-91df-4cc9-5016-3f7b2e0e8f51');
                     }
 
-                    recursivelyAddSnippetToIframes(window);
                 </script>
     </body>
 </html>
