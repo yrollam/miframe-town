@@ -58,15 +58,19 @@
 
                     function addIframeWatcherToTargetWindow(targetWindow) {
                         var int = targetWindow.setInterval(function () {
-                            var iframes = targetWindow.document.querySelectorAll('iframe');
+                            try {
+                                var iframes = targetWindow.document.querySelectorAll('iframe');
 
-                            iframes.forEach(iframe => {
-                                var hasPendo = iframe.getAttribute('pendo-installed');
+                                iframes.forEach(iframe => {
+                                    var hasPendo = iframe.getAttribute('pendo-installed');
 
-                                if(!hasPendo) {
-                                    addSnippetToFrame(iframe);
-                                }
-                            });
+                                    if(!hasPendo) {
+                                        addSnippetToFrame(iframe);
+                                    }
+                                });
+                            } catch() {
+                                // suppress errors
+                            }
                         }, 500);
                     }
 
