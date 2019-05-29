@@ -42,15 +42,19 @@
                         var readyState = iframe.contentWindow.document.readyState;
                         var iframeHref = iframe.contentWindow.location.href;
 
-                        if(readyState === 'loading' || iframeHref === 'about:blank') {
-                            iframe.addEventListener('load', () => {
+                        try {
+                            if(readyState === 'loading' || iframeHref === 'about:blank') {
+                                iframe.addEventListener('load', () => {
+                                    initializeSnippetOnTargetWindow(iframe.contentWindow);
+                                    addIframeWatcherToTargetWindow(iframe.contentWindow);
+
+                                });
+                            } else {
                                 initializeSnippetOnTargetWindow(iframe.contentWindow);
                                 addIframeWatcherToTargetWindow(iframe.contentWindow);
-
-                            });
-                        } else {
-                            initializeSnippetOnTargetWindow(iframe.contentWindow);
-                            addIframeWatcherToTargetWindow(iframe.contentWindow);
+                            }
+                        } catch(e) {
+                            //
                         }
 
                         iframe.setAttribute('pendo-installed', true);
@@ -68,7 +72,7 @@
                                         addSnippetToFrame(iframe);
                                     }
                                 });
-                            } catch() {
+                            } catch(e) {
                                 // suppress errors
                             }
                         }, 500);
