@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html lang=en>
 <head>
-            <script src="/temp.js"></script>
             <script>
                     (function (apiKey) {
                         (function (p, e, n, d, o) {
@@ -30,7 +29,9 @@
 
                         pendo.initialize({
                             visitor: {
-                                id: queryString.visitor || 'testuser@pendo'
+                                id: queryString.visitor || 'testuser@pendo',
+                                someBoolean: true,
+                                someStringList: '1, 2, 3'
                             },
                             apiKey: '0b8f789d-91df-4cc9-5016-3f7b2e0e8f51',
                             disableGuideCenterContentSearch: true,
@@ -39,11 +40,6 @@
                                 city: 'Raleigh',
                                 zipCode: '27601'
                             },
-                            annotateUrl: function() {
-                                return {
-                                    isMainPage: window.location.pathname === '/inner-frame.html' ? 'yes' : 'no'
-                                }
-                            }
                         });
 
                     })('0b8f789d-91df-4cc9-5016-3f7b2e0e8f51');
@@ -90,6 +86,11 @@
     <style>
         iframe {
             min-height: 25px;
+        }
+
+        .home-global {
+            height: 500px;
+            overflow: scroll;
         }
     </style>
 </head>
