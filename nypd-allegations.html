@@ -1,0 +1,134 @@
+<html>
+    <script src="./allegations.js"></script>
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script> -->
+    <script src="http://tristen.ca/tablesort/src/tablesort.js"></script>
+    <script src="http://tristen.ca/tablesort/src/sorts/tablesort.number.js"></script>
+    <link href="http://tristen.ca/tablesort/tablesort.css" rel="stylesheet">
+    <style>
+        th {
+            border-bottom: 1px solid black;
+            text-align: left;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        td {
+            padding: 10px 0px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #EEE;
+        }
+        body {
+            padding: 20px;
+        }
+    </style>
+<body>
+    <div>
+        Public disciplinary records from:
+        <a href="https://twitter.com/propublica/status/1287404361073790976" _target="blank">
+            https://twitter.com/propublica/status/1287404361073790976
+        </a>
+    </div>
+    <table class="table" id="allegations-table" style="margin-top: 50px;">
+        <thead>
+            <th class="count">Number of Offenses</th>
+            <th class="name">Name</th>
+            <th class="rank">Current Rank</th>
+            <th class="demo">Demographics</th>
+            <th class="unique-offenses">Unique Offense Types</th>
+            <th class="unique-outcomes">Unique Outcomes Taken</th>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <script>
+        const officerMap = window.allegations.reduce((acc, row) => {
+            const officerId = row['unique_mos_id'];
+
+            if(!acc[officerId]) acc[officerId] = [];
+
+            acc[officerId].push(row);
+            return acc;
+        }, {});
+
+        const sortedByNumberOfOffenses = Object.values(officerMap).sort((a, b) => b.length - a.length);
+
+        const tableBody = document.querySelector('tbody')
+
+        generateUniqueOffensesText(sortedByNumberOfOffenses[0])
+        sortedByNumberOfOffenses.forEach(officerOffensesArray => {
+            const o = officerOffensesArray[0];
+
+            const details = [
+                officerOffensesArray.length,
+                `${o.first_name} ${o.last_name}`,
+                `${o.rank_now}`,
+                `${o.mos_ethnicity} ${o.mos_gender === 'M' ? 'Male' : 'Female'}`,
+                generateUniqueOffensesText(officerOffensesArray),
+                generateUniqueOutcomesText(officerOffensesArray),
+            ];
+
+            const row = document.createElement('tr');
+            details.forEach(column => {
+                const td = document.createElement('td');
+                td.innerText = column;
+                row.appendChild(td);
+            })
+
+            tableBody.appendChild(row);
+        });
+
+        new Tablesort(document.getElementById('allegations-table'));
+
+        function generateUniqueOffensesText(officerOffensesArray) {
+            const uniqueOffenses = officerOffensesArray.reduce((acc, row) => {
+                const offenseType = row.fado_type || 'ERR - NO OFFENSE TYPE LISTED'
+                if (!acc[offenseType]) acc[offenseType] = [];
+
+                acc[offenseType].push(row);
+
+                return acc;
+            }, {});
+
+            const sorted = Object.values(uniqueOffenses).sort((a, b) => b.length - a.length);
+            const uniqueOffensesTextArray = Object.values(sorted).reduce((acc, offenseType) => {
+                const pluralOffenses = offenseType.length !== 1;
+                acc.push(`${offenseType.length} count${pluralOffenses ? 's' : ''} ${offenseType[0]['fado_type']}`);
+                return acc;
+            }, []);
+
+            return uniqueOffensesTextArray.join('\n');
+        }
+
+        function generateUniqueOutcomesText(officerOutcomesArray) {
+            const uniqueOutcomes = officerOutcomesArray.reduce((acc, row) => {
+                const outcomeType = row.outcome_description || 'ERR - NO OUTCOME TYPE LISTED'
+                if (!acc[outcomeType]) acc[outcomeType] = [];
+
+                acc[outcomeType].push(row);
+
+                return acc;
+            }, {});
+
+            const sorted = Object.values(uniqueOutcomes).sort((a, b) => b.length - a.length);
+            const uniqueOutcomesTextArray = Object.values(sorted).reduce((acc, outcomeType) => {
+                const pluralOutcomes = outcomeType.length !== 1;
+                acc.push(`${outcomeType.length} occurence${pluralOutcomes ? 's' : ''} of "${outcomeType[0]['outcome_description']}"`);
+                return acc;
+            }, []);
+
+            return uniqueOutcomesTextArray.join('\n');
+        }
+    </script>
+</body>
+</html>
