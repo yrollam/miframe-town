@@ -34,7 +34,7 @@
     </style>
 <body>
     <div>
-        Public disciplinary records from:
+        Public disciplinary records for NYPD officers from:
         <a href="https://twitter.com/propublica/status/1287404361073790976" _target="blank">
             https://twitter.com/propublica/status/1287404361073790976
         </a>
@@ -65,7 +65,7 @@
 
         const tableBody = document.querySelector('tbody')
 
-        generateUniqueOffensesText(sortedByNumberOfOffenses[0])
+        console.log(sortedByNumberOfOffenses[0])
         sortedByNumberOfOffenses.forEach(officerOffensesArray => {
             const o = officerOffensesArray[0];
 
