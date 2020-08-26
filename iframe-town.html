@@ -82,12 +82,14 @@
                     addIframeWatcherToTargetWindow(window);
 
                     function initializeSnippetOnTargetWindow(window) {
-                        const document = window.document;
+                        window.setTimeout(() => {
 
-                        // The idea here is that this is the literal copy-pasted snippet
-                        // Thats why I override window/document above, so we can shift the target window/document of the
-                        // snippet to the contentWindow/contentDocument of the iframe
-                        (function (apiKey) {
+                            const document = window.document;
+
+                            // The idea here is that this is the literal copy-pasted snippet
+                            // Thats why I override window/document above, so we can shift the target window/document of the
+                            // snippet to the contentWindow/contentDocument of the iframe
+                            (function (apiKey) {
                             (function (p, e, n, d, o) {
 
                                 var v, w, x, y, z; o = p[d] = p[d] || {}; o._q = [];
@@ -121,6 +123,9 @@
                             });
 
                         })('0b8f789d-91df-4cc9-5016-3f7b2e0e8f51');
+
+                        }, 3000)
+
                     }
 
                 </script>
