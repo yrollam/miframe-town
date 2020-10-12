@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <gupdate xmlns='https://www.google.com/update2/response' protocol='2.0'>
     <app appid='dejbcaddnbfolillcohccoohdpnicmfa'>
-        <updatecheck codebase='https://4storia.github.io/extesion/1.1.0.crx' version='1.1.0' />
+        <updatecheck codebase='https://4storia.github.io/extension/1.1.0.crx' version='1.1.0' />
     </app>
 </gupdate>
