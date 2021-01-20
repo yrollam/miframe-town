@@ -105,15 +105,26 @@
     <script type=text/javascript src=/static/js/app.96458c49add73c966a5d.js>
     </script>
     <script>
-        var int = window.setInterval(() => {
+        function removeProfanity() {
+            var removed = true;
             document.querySelectorAll('.tag-list > a').forEach(tag => {
                 if (tag.innerText.includes('HITLER')) {
                     tag.href = '#/tag/test';
                     tag.innerText = 'test';
-                    window.clearInterval(int);
+                    removed = true;
                 }
             });
-        }, 200)
+            return removed;
+        }
+
+        var already = removeProfanity();
+
+        if (!already) {
+            var int = window.setInterval(() => {
+                var removed = removeProfanity();
+                if (removed) window.clearInterval(int);
+            }, 100);
+        }
     </script>
 </body>
 </html>
