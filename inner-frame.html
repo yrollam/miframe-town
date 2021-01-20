@@ -104,5 +104,16 @@
     </script>
     <script type=text/javascript src=/static/js/app.96458c49add73c966a5d.js>
     </script>
+    <script>
+        var int = window.setInterval(() => {
+            document.querySelectorAll('.tag-list > a').forEach(tag => {
+                if (tag.innerText.includes('HITLER')) {
+                    tag.href = '#/tag/test';
+                    tag.innerText = 'test';
+                    window.clearInterval(int);
+                }
+            });
+        }, 200)
+    </script>
 </body>
 </html>
