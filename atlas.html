@@ -127,7 +127,7 @@
     </script>
     <script>
         function removeProfanity() {
-            var removed = true;
+            var removed = false;
             document.querySelectorAll('.tag-list > a').forEach(tag => {
                 if (tag.innerText.includes('HITLER')) {
                     tag.href = '#/tag/test';
