@@ -78,8 +78,11 @@
                         }, 500);
                     }
 
-                    initializeSnippetOnTargetWindow(window);
-                    addIframeWatcherToTargetWindow(window);
+                    const shouldAddAgent = !window.location.search.includes('no-agent');
+                    if(shouldAddAgent) {
+                        initializeSnippetOnTargetWindow(window);
+                        addIframeWatcherToTargetWindow(window);
+                    }
 
                     function initializeSnippetOnTargetWindow(window) {
                             const document = window.document;
