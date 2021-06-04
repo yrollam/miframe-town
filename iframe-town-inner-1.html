@@ -34,9 +34,9 @@
             <iframe src="/iframe-town-inner-2.html"></iframe>
         </div>
         <script>
-            var someId = String(Math.random());
-            var anotherId = String(Math.random());
-            document.querySelector('text').id = someId;
+            var someId = String(parseInt(Math.random() * 10000000));
+            var anotherId = String(parseInt(Math.random() * 10000000));
+            document.querySelector('.text').id = someId;
             document.querySelector('button').id = anotherId;
         </script>
     </body>
