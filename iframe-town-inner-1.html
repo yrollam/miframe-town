@@ -36,8 +36,8 @@
         <script>
             var someId = String(parseInt(Math.random() * 10000000));
             var anotherId = String(parseInt(Math.random() * 10000000));
-            document.querySelector('.text').id = someId;
-            document.querySelector('button').id = anotherId;
+            document.querySelector('.text').id = `random-${someId}`;
+            document.querySelector('button').id = `random-${anotherId}`;
         </script>
     </body>
 </html>
