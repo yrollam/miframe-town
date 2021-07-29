@@ -16,12 +16,28 @@
             .container {
                 display: flex;
             }
+            .some-dropdown {
+                margin-top: 15px;
+            }
+            #hidden-toggle-content {
+                display: none;
+                margin-top: 10px;
+            }
+            #hidden-toggle-content.visible {
+                display: block;
+            }
         </style>
         <script>
             function addIframe() {
                 const iframe = document.createElement('iframe');
                 iframe.src = '/iframe-town-inner-2.html';
                 document.querySelector('.frame-container').appendChild(iframe);
+            }
+
+            function toggleHiddenContentVisibility() {
+                const ele = document.getElementById('hidden-toggle-content');
+
+                ele.classList.toggle('visible');
             }
         </script>
     </head>
@@ -39,5 +55,24 @@
             document.querySelector('.text').id = `random-${someId}`;
             document.querySelector('button').id = `random-${anotherId}`;
         </script>
+        <select class="some-dropdown">
+            <option value="" disabled selected>Select your option</option>
+            <option>opt 1</option>
+            <option>opt 2</option>
+            <option>opt 3</option>
+        </select>
+        <button onclick="toggleHiddenContentVisibility()">
+            A button that doesn't do anything...unless...
+        </button>
+        <div id="hidden-toggle-content">
+            WOAH, IT <strong>DOES</strong> DO SOMETHING
+        </div>
+        <h3>Check out this scroll container tho</h3>
+        <h4>What could be down there?</h4>
+        <div id="scroll-container" style="height: 200px; overflow: scroll; border: 1px solid black; width: 300px;">
+            <div class="dumb-hidden-text" style="margin-top: 1000px;padding: 10px;">
+                ...oh, just this? laaaaaaaame
+            </div>
+        </div>
     </body>
 </html>
