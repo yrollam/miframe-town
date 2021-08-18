@@ -4,11 +4,40 @@
     <title>Calypso test site</title>
 </head>
 <style>
-
+custom-ele,
+custom-ele-with-slot {
+    display: inline-block;
+    padding: 40px;
+    border: 1px solid;
+    margin-top: 30px;
+}
 </style>
 
 <body>
     <div class="title">HOWDY PARDNER, WELCOME TO...pendo-dev...town...</div>
+    <custom-ele>
+        I'm a shadow dom element with a default slot and no wrapping html tag!
+    </custom-ele>
+    <custom-ele-with-slot>
+        <span slot="text">
+            I'm a shadow dom element with a named slot
+        </span>
+    </custom-ele-with-slot>
+    <script>
+        const customEle = document.querySelector('custom-ele');
+        customEle.attachShadow({ mode: 'open' });
+
+        const slot = document.createElement('slot');
+        customEle.shadowRoot.appendChild(slot);
+        // console.log("huh?", customEle)
+
+        const customEleWithSlot = document.querySelector('custom-ele-with-slot');
+        customEleWithSlot.attachShadow({ mode: 'open' });
+
+        const slot2 = document.createElement('slot');
+        slot2.setAttribute('name', 'text');
+        customEleWithSlot.shadowRoot.appendChild(slot2);
+    </script>
     <script id="pendo-snippet">
         const shouldAddAgent = !window.location.search.includes('no-agent');
         if (shouldAddAgent) {
