@@ -11,6 +11,10 @@
         border: 1px solid;
         margin-top: 30px;
     }
+
+    .hidden {
+        visibility: hidden;
+    }
 </style>
 
 <body>
@@ -39,6 +43,10 @@
         const slot2 = document.createElement('slot');
         slot2.setAttribute('name', 'text');
         customEleWithSlot.shadowRoot.appendChild(slot2);
+
+        let int = setInterval(() => {
+            customEle.classList.toggle('hidden');
+        }, 1500)
     </script>
     <script id="pendo-snippet">
         const shouldAddAgent = !window.location.search.includes('no-agent');
