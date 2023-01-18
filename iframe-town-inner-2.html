@@ -32,6 +32,16 @@
     <div class="subtext">
         ...please, no more. I'm begging you
     </div>
+    <script>
+        console.log("??????", window.__identifyPendoVisitor)
+        if (window.__identifyPendoVisitor) {
+            window.__identifyPendoVisitor({
+                visitor: {
+                    id: 'VISITOR ID PLZ'
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>
