@@ -33,14 +33,17 @@
         ...please, no more. I'm begging you
     </div>
     <script>
-        console.log("??????", window.__identifyPendoVisitor)
-        if (window.__identifyPendoVisitor) {
-            window.__identifyPendoVisitor({
-                visitor: {
-                    id: 'VISITOR ID PLZ'
-                }
-            });
-        }
+        setTimeout(() => {
+            console.log("??????", window.__identifyPendoVisitor)
+            if (window.__identifyPendoVisitor) {
+                window.__identifyPendoVisitor({
+                    visitor: {
+                        id: 'VISITOR ID PLZ'
+                    }
+                });
+            }
+
+        }, 500)
     </script>
 </body>
 
