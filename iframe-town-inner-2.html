@@ -35,6 +35,7 @@
     <textarea id="identify-json" style="width: 400px; height: 400px;margin-left: 20px;"></textarea>
     <button onclick="identify">Set visitor ID</button>
     <script>
+        console.log("version 1");
         function identify() {
             const json = document.querySelector('#identify-json').value;
             console.log("raw json is", json);
