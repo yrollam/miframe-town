@@ -37,13 +37,18 @@
     <script>
         function identify() {
             const json = document.querySelector('#identify-json').value;
-            const identity = JSON.parse(json);
-            if(!window.__identifyPendoVisitor) {
-                console.error("window.__identifyPendoVisitor does not exist")
-                return;
-            }
+            console.log("raw json is", json);
+            try {
+                const identity = JSON.parse(json);
+                if(!window.__identifyPendoVisitor) {
+                    console.error("window.__identifyPendoVisitor does not exist")
+                    return;
+                }
 
-            window.__identifyPendoVisitor(identity);
+                window.__identifyPendoVisitor(identity);
+            } catch(err) {
+                console.error(err);
+            }
         }
     </script>
 </body>
