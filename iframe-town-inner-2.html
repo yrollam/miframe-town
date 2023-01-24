@@ -32,18 +32,19 @@
     <div class="subtext">
         ...please, no more. I'm begging you
     </div>
+    <textarea id="identify-json" style="width: 400px; height: 400px;margin-left: 20px;"></textarea>
+    <button onclick="identify">Set visitor ID</button>
     <script>
-        setTimeout(() => {
-            console.log("??????", window.__identifyPendoVisitor)
-            if (window.__identifyPendoVisitor) {
-                window.__identifyPendoVisitor({
-                    visitor: {
-                        id: 'VISITOR ID PLZ'
-                    }
-                });
+        function identify() {
+            const json = document.querySelector('#identify-json').value;
+            const identity = JSON.parse(json);
+            if(!window.__identifyPendoVisitor) {
+                console.error("window.__identifyPendoVisitor does not exist")
+                return;
             }
 
-        }, 500)
+            window.__identifyPendoVisitor(identity);
+        }
     </script>
 </body>
 
