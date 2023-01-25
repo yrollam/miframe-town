@@ -27,25 +27,29 @@
 
     <body>
         <div class="text">
-            Inner, inner iframe. <a
-                href="/miframe-town/iframe-town-inner-3.html">(take me
-                to
-                inner-3)</a>
+            <a href="/miframe-town">miframe-town</a>
         </div>
         <div class="text">
-            Inner, inner iframe. <a
-                href="/miframe-town/iframe-town-inner-1.html">(take me
-                to
-                inner-1)</a>
-        </div>
+            <div class="text">
+                Inner, inner iframe. <a
+                    href="/miframe-town/iframe-town-inner-3.html">(take me
+                    to
+                    inner-3)</a>
+            </div>
+            <div class="text">
+                Inner, inner iframe. <a
+                    href="/miframe-town/iframe-town-inner-1.html">(take me
+                    to
+                    inner-1)</a>
+            </div>
 
-        <div class="subtext">
-            ...please, no more. I'm begging you
-        </div>
-        <textarea id="identify-json" style="width: 400px; height:
-            400px;margin-left: 20px;"></textarea>
-        <button id="set-identity">Set visitor ID</button>
-        <script>
+            <div class="subtext">
+                ...please, no more. I'm begging you
+            </div>
+            <textarea id="identify-json" style="width: 400px; height:
+                400px;margin-left: 20px;"></textarea>
+            <button id="set-identity">Set visitor ID</button>
+            <script>
         console.log("version 2");
         function identify() {
             const json = document.querySelector('#identify-json').value;
@@ -65,6 +69,6 @@
 
         document.querySelector('#set-identity').addEventListener('click', identify)
     </script>
-    </body>
+        </body>
 
-</html>
+    </html>
